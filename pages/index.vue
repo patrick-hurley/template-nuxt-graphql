@@ -10,7 +10,7 @@
                 >
                     <NuxtLink
                         :to="{
-                            path: article.slug + '/' + article.id,
+                            path: 'article/' + article.slug + '/' + article.id,
                             query: { id: article.id },
                         }"
                         >{{ article.title }}
