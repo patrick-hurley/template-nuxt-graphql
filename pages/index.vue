@@ -2,14 +2,17 @@
     <div class="container">
         <h1>Lyric Blog</h1>
         <div class="sections">
-            <div class="group">
+            <div v-if="articles" class="group">
                 <div
                     v-for="article in articles"
                     :key="article.id"
                     class="section"
                 >
                     <NuxtLink
-                        :to="{ path: article.slug, query: { id: article.id } }"
+                        :to="{
+                            path: article.slug + '/' + article.id,
+                            query: { id: article.id },
+                        }"
                         >{{ article.title }}
                     </NuxtLink>
 
@@ -23,7 +26,7 @@
 </template>
 
 <script>
-import { allArticlesQuery } from '@/graphql/queries'
+import { allArticlesQuery } from '~/graphql/queries'
 export default {
     data() {
         return {
@@ -32,7 +35,6 @@ export default {
     },
     apollo: {
         articles: {
-            prefetch: true,
             query: allArticlesQuery,
         },
     },
