@@ -3,6 +3,9 @@ export default {
     target: 'static',
     generate: {
         fallback: true,
+        exclude: [
+            /^\/article/, // path starts with /admin
+        ],
     },
 
     // Global page headers: https://go.nuxtjs.dev/config-head
