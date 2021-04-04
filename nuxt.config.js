@@ -2,6 +2,7 @@ export default {
     // Target: https://go.nuxtjs.dev/config-target
     target: 'static',
     generate: {
+        fallback: true,
         exclude: [
             /^\/article/, // path starts with /admin
         ],
