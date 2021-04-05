@@ -27,16 +27,13 @@
 <script>
 import { allArticlesQuery } from '~/graphql/queries'
 export default {
-    data() {
-        return {
-            articles: [],
-        }
-    },
-    apollo: {
-        articles: {
-            prefetch: true,
+    async asyncData({ app }) {
+        const { data } = await app.apolloProvider.defaultClient.query({
             query: allArticlesQuery,
-        },
+        })
+        return {
+            articles: data.articles,
+        }
     },
 }
 </script>

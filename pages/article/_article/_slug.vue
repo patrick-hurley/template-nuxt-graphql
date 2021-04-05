@@ -18,18 +18,7 @@ import { singleArticleQuery } from '~/graphql/queries.js'
 export default {
     async asyncData({ app, params }) {
         const { data } = await app.apolloProvider.defaultClient.query({
-            query: gql`
-                query singleArticleQuery($id: ID!) {
-                    article(id: $id) {
-                        id
-                        title
-                        date
-                        body
-                        description
-                        slug
-                    }
-                }
-            `,
+            query: singleArticleQuery,
             variables: {
                 id: params.slug,
             },
