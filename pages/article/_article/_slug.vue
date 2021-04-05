@@ -11,65 +11,25 @@
 </template>
 
 <script>
-import { gql } from 'nuxt-graphql-request'
+import { singleArticleQuery } from '~/graphql/queries.js'
 
 export default {
-    // // using params
-    // async asyncData({ $graphql, params }) {
-    //     const query = gql`
-    //         query singleArticleQuery($id: ID!) {
-    //             article(id: $id) {
-    //                 id
-    //                 title
-    //                 date
-    //                 body
-    //                 description
-    //                 slug
-    //             }
-    //         }
-    //     `
-    //     const variables = { id: params.slug }
-    //     const article = await $graphql.default.request(query, variables)
-    //     return article
-    // },
-    async asyncData({ $graphql, route }) {
-        const query = gql`
-            query singleArticleQuery($id: ID!) {
-                article(id: $id) {
-                    id
-                    title
-                    date
-                    body
-                    description
-                    slug
-                }
-            }
-        `
-        const variables = { id: route.query.id }
-        const article = await $graphql.default.request(query, variables)
-        return article
+    data() {
+        return {
+            article: [],
+        }
     },
-    // apollo: {
-    //     article: {
-    //         query: gql`
-    //             query singleArticleQuery($id: ID!) {
-    //                 article(id: $id) {
-    //                     id
-    //                     title
-    //                     date
-    //                     body
-    //                     description
-    //                     slug
-    //                 }
-    //             }
-    //         `,
-    //         variables() {
-    //             return {
-    //                 id: this.$route.query.id,
-    //             }
-    //         },
-    //     },
-    // },
+    apollo: {
+        article: {
+            prefetch: true,
+            query: singleArticleQuery,
+            variables() {
+                return {
+                    id: this.$route.params.slug,
+                }
+            },
+        },
+    },
 }
 </script>
 

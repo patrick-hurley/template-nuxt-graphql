@@ -1,12 +1,12 @@
 export default {
     // Target: https://go.nuxtjs.dev/config-target
     target: 'static',
-    generate: {
-        fallback: true,
-        exclude: [
-            /^\/article/, // path starts with /admin
-        ],
-    },
+    // generate: {
+    //     fallback: true,
+    //     exclude: [
+    //         /^\/article/, // path starts with /article
+    //     ],
+    // },
 
     // Global page headers: https://go.nuxtjs.dev/config-head
     head: {
@@ -41,37 +41,7 @@ export default {
         // https://go.nuxtjs.dev/stylelint
         '@nuxtjs/stylelint-module',
         '@nuxtjs/apollo',
-        'nuxt-graphql-request',
     ],
-
-    graphql: {
-        /**
-         * An Object of your GraphQL clients
-         */
-        clients: {
-            default: {
-                /**
-                 * The client endpoint url
-                 */
-                endpoint: 'http://localhost:1337/graphql',
-                /**
-                 * Per-client options overrides
-                 * See: https://github.com/prisma-labs/graphql-request#passing-more-options-to-fetch
-                 */
-                options: {},
-            },
-            secondClient: {
-                // ...client config
-            },
-            // ...your other clients
-        },
-
-        /**
-         * Options
-         * See: https://github.com/prisma-labs/graphql-request#passing-more-options-to-fetch
-         */
-        options: {},
-    },
 
     apollo: {
         clientConfigs: {

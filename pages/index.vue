@@ -11,7 +11,6 @@
                     <NuxtLink
                         :to="{
                             path: 'article/' + article.slug + '/' + article.id,
-                            query: { id: article.id },
                         }"
                         >{{ article.title }}
                     </NuxtLink>
@@ -35,6 +34,7 @@ export default {
     },
     apollo: {
         articles: {
+            prefetch: true,
             query: allArticlesQuery,
         },
     },
