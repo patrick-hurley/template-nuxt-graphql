@@ -11,24 +11,32 @@
 </template>
 
 <script>
+// import { gql } from 'nuxt-graphql-request'
+import gql from 'graphql-tag'
 import { singleArticleQuery } from '~/graphql/queries.js'
 
 export default {
-    data() {
-        return {
-            article: [],
-        }
-    },
-    apollo: {
-        article: {
-            prefetch: true,
-            query: singleArticleQuery,
-            variables() {
-                return {
-                    id: this.$route.params.slug,
+    async asyncData({ app, params }) {
+        const { data } = await app.apolloProvider.defaultClient.query({
+            query: gql`
+                query singleArticleQuery($id: ID!) {
+                    article(id: $id) {
+                        id
+                        title
+                        date
+                        body
+                        description
+                        slug
+                    }
                 }
+            `,
+            variables: {
+                id: params.slug,
             },
-        },
+        })
+        return {
+            article: data.article,
+        }
     },
 }
 </script>
