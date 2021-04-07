@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <h1>Lyric Blog</h1>
+        <h1>Nuxt, Strapi, SQLite, GraphQL</h1>
         <div class="sections">
             <div v-if="articles" class="group">
                 <div
@@ -9,6 +9,7 @@
                     class="section"
                 >
                     <NuxtLink
+                        no-prefetch
                         :to="{
                             path: 'article/' + article.slug + '/' + article.id,
                         }"
